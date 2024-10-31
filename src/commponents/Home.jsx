@@ -5,7 +5,6 @@ import {
   Typography,
   Button,
   Stack,
-  Modal,
   FormControl,
   Input,
 } from "@mui/material";
@@ -13,10 +12,6 @@ import {
 const Home = () => {
   const navigate = useNavigate();
 
-  //モーダルウインドウ
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -39,7 +34,7 @@ const Home = () => {
     if (name && password) {
       navigate(`/room?roomId=${password}`);
     } else {
-      handleOpen(); // どちらかが未入力の場合に出すウインドウ
+      console.log("名前とパスの入力");
     }
   };
 
@@ -130,62 +125,6 @@ const Home = () => {
           >
             タップ
           </Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "75vw",
-                bgcolor: "background.paper",
-                border: "3px solid #FF4BB7",
-                borderRadius: "30px",
-                p: "8vw",
-              }}
-            >
-              <Typography
-                onClick={handleClose}
-                sx={{
-                  position: "absolute",
-                  top: "0vw",
-                  right: "4vw",
-                  fontSize: "9vw",
-                  cursor: "pointer",
-                }}
-              >
-                ×
-              </Typography>
-              <Typography
-                variant="p"
-                sx={{
-                  fontSize: "5vw",
-                }}
-              >
-                名前と合言葉の両方を入力してね
-              </Typography>
-              <Typography
-                sx={{
-                  mt: "4vw",
-                  fontSize: "4vw",
-                }}
-              >
-                名前と合言葉を入力すると
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: "4vw",
-                }}
-              >
-                次のページへ進めるよ♪
-              </Typography>
-            </Box>
-          </Modal>
         </Box>
       </Box>
     </>
