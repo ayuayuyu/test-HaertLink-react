@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Room from "./commponents/Room";
 import Home from "./commponents/Home";
+import Result from "./commponents/Result"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import { ChakraProvider } from "@mui/material";
 
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path={`/`} element={<Home />} />
           <Route path={`/room`} element={<Room />} />
+          <Route path={`/result`} element={<Result/>} />
         </Routes>
       </BrowserRouter>
     </>
