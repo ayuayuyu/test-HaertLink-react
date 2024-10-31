@@ -15,7 +15,7 @@ const WebSocket = () => {
   const [heartRate, setheartRate] = useState(
     "{player1:null,heartRate1:0.0,player2:null,heartRate2:0.0}"
   );
-  const [test, setTest] = useState([]);
+  const [heartBeeat, setheartBeeat] = useState([]);
   // const [heartRate, setheartRate] = useState<string>(" ");
   const socketRef = useRef();
 
@@ -47,7 +47,7 @@ const WebSocket = () => {
 
   useEffect(() => {
     console.log("kokoday: ", heartRate?.heartRate1);
-    setTest((prev) => [...prev, heartRate]);
+    setheartBeeat((prev) => [...prev, heartRate]);
   }, [heartRate]);
 
   return (
@@ -61,14 +61,14 @@ const WebSocket = () => {
       </p>
       <h1>player1</h1>
       <div>
-        {test.map((req, index) => (
+        {heartBeeat.map((req, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <p key={index}>{req.heartRate1}</p>
         ))}
       </div>
       <h1>player2</h1>
       <div>
-        {test.map((req, index) => (
+        {heartBeeat.map((req, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <p key={index}>{req.heartRate2}</p>
         ))}
