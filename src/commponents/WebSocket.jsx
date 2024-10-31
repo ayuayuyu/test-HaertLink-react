@@ -15,7 +15,8 @@ const WebSocket = () => {
   const [heartRate, setheartRate] = useState(
     "{player1:null,heartRate1:0.0,player2:null,heartRate2:0.0}"
   );
-  const [heartBeeat, setheartBeeat] = useState([]);
+  const [heartBeeat1, setheartBeeat1] = useState([]);
+  const [heartBeeat2, setheartBeeat2] = useState([]);
   // const [heartRate, setheartRate] = useState<string>(" ");
   const socketRef = useRef();
 
@@ -46,8 +47,9 @@ const WebSocket = () => {
   }, [roomId]);
 
   useEffect(() => {
-    console.log("kokoday: ", heartRate?.heartRate1);
-    setheartBeeat((prev) => [...prev, heartRate]);
+    console.log("kokoday: ", heartRate.heartRate1);
+    setheartBeeat1((prev) => [...prev, heartRate.heartRate1]);
+    setheartBeeat2((prev) => [...prev, heartRate.heartRate2]);
   }, [heartRate]);
 
   return (
@@ -61,16 +63,16 @@ const WebSocket = () => {
       </p>
       <h1>player1</h1>
       <div>
-        {heartBeeat.map((req, index) => (
+        {heartBeeat1.map((req, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <p key={index}>{req.heartRate1}</p>
+          <p key={index}>{req}</p>
         ))}
       </div>
       <h1>player2</h1>
       <div>
-        {heartBeeat.map((req, index) => (
+        {heartBeeat2.map((req, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <p key={index}>{req.heartRate2}</p>
+          <p key={index}>{req}</p>
         ))}
       </div>
     </>
