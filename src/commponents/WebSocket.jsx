@@ -36,7 +36,6 @@ const WebSocket = () => {
       // ここのログだとundefinedになってしまう
       console.log("heartRate: ", heartRate?.heartRate1);
       // `setTest`には配列を渡すため、既存のtestに追加する形で設定
-      setTest((prev) => [...prev, event.data]);
     };
 
     return () => {
@@ -45,6 +44,11 @@ const WebSocket = () => {
       }
     };
   }, [roomId]);
+
+  useEffect(() => {
+    console.log("kokoday: ", heartRate?.heartRate1);
+    setTest((prev) => [...prev, heartRate]);
+  }, [heartRate]);
 
   return (
     <>
@@ -56,19 +60,19 @@ const WebSocket = () => {
         心拍数: {heartRate.player2}:{heartRate.heartRate2}
       </p>
       <h1>player1</h1>
-      <p>
+      <div>
         {test.map((req, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <p key={index}>{req.heartRate1}</p>
         ))}
-      </p>
+      </div>
       <h1>player2</h1>
-      <p>
+      <div>
         {test.map((req, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <p key={index}>{req.heartRate2}</p>
         ))}
-      </p>
+      </div>
     </>
   );
 };
