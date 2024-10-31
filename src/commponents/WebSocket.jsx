@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import ReconnectingWebSocket from "reconnecting-websocket";
 // ESM
 import { destr } from "destr";
 
 const WebSocket = () => {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   // const name = searchParams.get("name") || "";
   const roomId = searchParams.get("roomId") || "";
@@ -55,6 +56,9 @@ const WebSocket = () => {
   return (
     <>
       <h1>Hellow WebSocket</h1>
+      <button onClick={() => navigate('/result', { state: { heartRate1 : heartBeeat1, heartRate2 : heartBeeat2} })}>
+        next page
+      </button>
       <p>
         心拍数: {heartRate.player1}:{heartRate.heartRate1}
       </p>
